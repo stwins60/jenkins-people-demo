@@ -63,7 +63,7 @@ pipeline{
         stage("Run App") {
             steps {
                 script {
-                    sh "docker run -d --name ${CONTAINER_NAME} -p 3319:5000 -e USER=lab-server --net cloudflared-lab-net ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker run -d --name ${CONTAINER_NAME} -p 3502:5000 -e USER=lab-server --net cloudflared-lab-net ${IMAGE_NAME}:${IMAGE_TAG}"
                 }
             }
         }
