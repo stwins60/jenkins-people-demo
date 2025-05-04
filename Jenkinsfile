@@ -50,7 +50,7 @@ pipeline{
                 script {
                     sh """
                         if [\$(docker ps -a -f name=${CONTAINER_NAME})]; then
-                            echo "Stopping and removing existing container: ${CONTAINER_NAME}
+                            echo "Stopping and removing existing container: ${CONTAINER_NAME}"
                             docker stop ${CONTAINER_NAME}
                             docker rm ${CONTAINER_NAME}
                         else
@@ -63,7 +63,7 @@ pipeline{
         stage("Run App") {
             steps {
                 script {
-                    sh "docker run -d --name ${CONTAINER_NAME} -p 3319:5000 -u USER=lab-server --net cloudflared-lab-net ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker run -d --name ${CONTAINER_NAME} -p 3319:5000 -e USER=lab-server --net cloudflared-lab-net ${IMAGE_NAME}:${IMAGE_TAG}"
                 }
             }
         }
